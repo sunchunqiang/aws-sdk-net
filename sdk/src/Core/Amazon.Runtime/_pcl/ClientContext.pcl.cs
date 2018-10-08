@@ -39,9 +39,10 @@ namespace Amazon.Runtime.Internal
                 _clientID = _appSetting.GetValue(APP_ID_KEY, ApplicationSettingsMode.Local);
                 if (string.IsNullOrEmpty(_clientID))
                 {
-                    _clientID = Guid.NewGuid().ToString();
-                    _appSetting.SetValue(APP_ID_KEY, _clientID, ApplicationSettingsMode.Local);
-                }
+                    string newClientID = Guid.NewGuid().ToString();
+                    _appSetting.SetValue(APP_ID_KEY, newClientID, ApplicationSettingsMode.Local);
+                    _clientID = newClientID;
+                 }
             }
         }
     }
